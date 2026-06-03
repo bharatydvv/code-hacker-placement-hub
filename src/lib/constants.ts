@@ -5,6 +5,12 @@ export const SITE = {
     'Prepare for placements with Company Wise Questions, PYQs, Quick Notes, Interview Questions, Aptitude Resources and Subject Wise Study Material.',
 };
 
+export const SITE_KEYWORDS = [
+  'placement preparation', 'campus placement', 'interview questions', 'PYQs',
+  'aptitude', 'DBMS', 'operating system', 'computer networks', 'data structures',
+  'algorithms', 'TCS', 'Infosys', 'Amazon', 'Google', 'technical interview', 'HR interview',
+];
+
 export const NAV_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'Subjects', href: '/subjects' },
