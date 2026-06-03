@@ -1,5 +1,6 @@
 'use client';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { Button } from '@/components/ui/button';
 import { updateProfile } from '@/app/(app)/actions/profile';
 
@@ -9,7 +10,7 @@ function Save() {
 }
 
 export function ProfileForm({ fullName, email }: { fullName: string; email: string }) {
-  const [state, action] = useFormState(updateProfile, undefined);
+ const [state, action] = useActionState(updateProfile, undefined);
   return (
     <form action={action} className="space-y-4 max-w-lg">
       <div className="flex items-center gap-4">

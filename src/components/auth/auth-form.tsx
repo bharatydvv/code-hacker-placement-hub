@@ -1,6 +1,7 @@
 'use client';
-import { useFormState, useFormStatus } from 'react-dom';
 
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { Button } from '@/components/ui/button';
 
 type ActionState = { error?: string; success?: string } | undefined;
@@ -26,7 +27,7 @@ export function AuthForm({
   fields: { name: string; type: string; placeholder: string; label: string }[];
   footer?: React.ReactNode;
 }) {
-  const [state, formAction] = useFormState(action, undefined);
+  const [state, formAction] = useActionState(action, undefined);
   return (
     <form action={formAction} className="space-y-4">
       {fields.map((f) => (
