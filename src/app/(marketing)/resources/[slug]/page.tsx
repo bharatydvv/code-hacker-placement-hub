@@ -4,7 +4,10 @@ import { getResourceBySlug, getRelatedResources, getRecentlyViewed, getBookmarke
 import { Badge } from '@/components/ui/badge';
 import { ResourceActions } from '@/components/resources/resource-actions';
 import { ResourceSection } from '@/components/resources/resource-section';
+import { JsonLd, articleSchema } from '@/components/seo/json-ld';
 import { Eye, Download } from 'lucide-react';
+
+const BASE = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -30,6 +33,7 @@ export default async function ResourceDetailPage({ params }: { params: Promise<{
 
   return (
     <div className="container py-16">
+      <JsonLd data={articleSchema({ title: resource.title, description: resource.description, url: `${BASE}/resources/${resource.slug}`, datePublished: resource.created_at, image: resource.thumbnail_url })} />
       <div className="grid gap-8 lg:grid-cols-[1fr_340px]">
         <div>
           <div className="mb-4 flex flex-wrap gap-2">

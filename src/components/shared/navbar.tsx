@@ -33,11 +33,11 @@ export function Navbar() {
         <div className="hidden lg:block">
           <Button asChild size="sm"><Link href="/login">Login</Link></Button>
         </div>
-        <button className="lg:hidden" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
+        <button className="lg:hidden rounded-lg p-2 hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu" aria-expanded={open} aria-controls="mobile-menu">
           {open ? <X /> : <Menu />}
         </button>
       </nav>
-      <div className={cn('lg:hidden overflow-hidden border-t border-white/10 transition-all', open ? 'max-h-[600px]' : 'max-h-0')}>
+      <div id="mobile-menu" className={cn('lg:hidden overflow-hidden border-t border-white/10 transition-all', open ? 'max-h-[600px]' : 'max-h-0')}>
         <div className="container flex flex-col gap-1 py-4">
           {NAV_ITEMS.map((item) => (
             <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-white/5">

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { getDashboardData } from '@/lib/dashboard-queries';
-import { ActivityChart } from '@/components/dashboard/activity-chart';
+import { LazyActivityChart as ActivityChart } from '@/components/dashboard/lazy-activity-chart';
 import { ProgressBar } from '@/components/dashboard/progress-bar';
 import { Card, CardTitle, CardDescription } from '@/components/ui/card';
 

@@ -3,7 +3,10 @@ import type { Metadata } from 'next';
 import { getSubjectBySlug, listResourcesBySubjectAndType, getBookmarkedIds } from '@/lib/resource-queries';
 import { ResourceSection } from '@/components/resources/resource-section';
 import { EmptyState } from '@/components/shared/empty-state';
-import { typeToSlug } from '@/lib/constants';
+import { JsonLd, courseSchema } from '@/components/seo/json-ld';
+
+export const revalidate = 120;
+const BASE = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
 const SUBJECT_SECTIONS = [
   'Quick Notes',
@@ -41,6 +44,7 @@ export default async function SubjectPage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="container py-16">
+      <JsonLd data={courseSchema({ name: subject.name, description: subject.description, url: `${BASE}/subjects/${subject.slug}` })} />
       <div className="glass-card mb-10 p-8">
         <p className="text-sm text-accent">Subject</p>
         <h1 className="mt-1 text-3xl font-bold sm:text-4xl">{subject.name}</h1>
