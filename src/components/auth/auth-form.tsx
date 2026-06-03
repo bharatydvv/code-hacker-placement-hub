@@ -1,6 +1,6 @@
 'use client';
 import { useFormState, useFormStatus } from 'react-dom';
-import Link from 'next/link';
+
 import { Button } from '@/components/ui/button';
 
 type ActionState = { error?: string; success?: string } | undefined;
@@ -50,9 +50,13 @@ export function AuthForm({
   );
 }
 
-export function GoogleButton({ action }: { action: () => Promise<{ error?: string } | void> }) {
+export function GoogleButton({
+  action,
+}: {
+  action: () => Promise<{ error?: string } | void>;
+}) {
   return (
-    <form action={action}>
+    <form action={async () => { await action(); }}>
       <Button type="submit" variant="outline" className="w-full">
         Continue with Google
       </Button>

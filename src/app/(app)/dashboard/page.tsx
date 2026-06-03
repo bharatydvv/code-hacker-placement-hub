@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Eye, Download, Bookmark, Flame, Trophy, BookOpen } from 'lucide-react';
+
 import { getDashboardData } from '@/lib/dashboard-queries';
 import { ReadinessRing } from '@/components/dashboard/readiness-ring';
 import { StatCard } from '@/components/dashboard/stat-card';
@@ -28,12 +28,12 @@ export default async function DashboardHome() {
           <ReadinessRing score={d.readinessScore} />
         </Card>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-          <StatCard icon={Eye} label="Resources Viewed" value={d.viewsCount} />
-          <StatCard icon={Download} label="Downloads" value={d.downloadsCount} />
-          <StatCard icon={Bookmark} label="Bookmarks" value={d.bookmarksCount} />
-          <StatCard icon={BookOpen} label="Subjects Covered" value={d.subjectsCovered} />
-          <StatCard icon={Flame} label="Current Streak" value={d.currentStreak} suffix="d" />
-          <StatCard icon={Trophy} label="Best Streak" value={d.bestStreak} suffix="d" />
+          <StatCard icon="eye" label="Resources Viewed" value={d.viewsCount} />
+<StatCard icon="download" label="Downloads" value={d.downloadsCount} />
+<StatCard icon="bookmark" label="Bookmarks" value={d.bookmarksCount} />
+<StatCard icon="book" label="Subjects Covered" value={d.subjectsCovered} />
+<StatCard icon="flame" label="Current Streak" value={d.currentStreak} suffix="d" />
+<StatCard icon="trophy" label="Best Streak" value={d.bestStreak} suffix="d" />
         </div>
       </div>
 

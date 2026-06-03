@@ -62,10 +62,28 @@ export function BulkImport() {
 
   async function onSubmit() {
     setSubmitting(true);
-    const valid = rows.filter((r) => r._valid).map(({ _valid, _error, ...rest }) => rest);
+    const valid = rows
+  .filter((r) => r._valid)
+  .map((row) => ({
+    title: row.title,
+    description: row.description,
+    resourceType: row.resourceType,
+    subject: row.subject,
+    company: row.company,
+    driveLink: row.driveLink,
+    thumbnailUrl: row.thumbnailUrl,
+  }));
+
     const res = await bulkCreateResources(valid);
-    setSubmitting(false);
-    if (res && 'inserted' in res) setResult({ inserted: res.inserted, skipped: res.skipped + (rows.length - valid.length) });
+
+setSubmitting(false);
+
+if (res && 'inserted' in res) {
+  setResult({
+    inserted: res.inserted ?? 0,
+    skipped: (res.skipped ?? 0) + (rows.length - valid.length),
+  });
+}
   }
 
   const validCount = rows.filter((r) => r._valid).length;
@@ -121,4 +139,5 @@ export function BulkImport() {
       )}
     </div>
   );
-}
+  }
+

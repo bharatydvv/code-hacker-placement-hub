@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { FileStack, CheckCircle2, Eye, Download, TrendingUp } from 'lucide-react';
-import { getAdminAnalytics } from '@/lib/admin-queries';
-import { StatCard } from '@/components/dashboard/stat-card';
-import { Card, CardTitle } from '@/components/ui/card';
 
+import { getAdminAnalytics } from '@/lib/admin-queries';
+
+import { Card, CardTitle } from '@/components/ui/card';
+import { TrendingUp } from 'lucide-react';
 export const metadata: Metadata = { title: 'Admin Overview' };
 
 function MiniList({ title, items, metric }: { title: string; items: { id: string; slug: string; title: string; view_count: number; download_count: number }[]; metric: 'view_count' | 'download_count' | 'trend' }) {
@@ -37,10 +37,10 @@ export default async function AdminOverview() {
         <p className="mt-1 text-sm text-muted-foreground">Platform-wide resource performance.</p>
       </div>
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        <StatCard icon={FileStack} label="Total Resources" value={a.totalResources} />
-        <StatCard icon={CheckCircle2} label="Published" value={a.publishedResources} />
-        <StatCard icon={Eye} label="Total Views" value={a.totalViews} />
-        <StatCard icon={Download} label="Total Downloads" value={a.totalDownloads} />
+        <div>Total Resources: {a.totalResources}</div>
+        <div>Published: {a.publishedResources}</div>
+        <div>Total Views: {a.totalViews}</div>
+        <div>Total Downloads: {a.totalDownloads}</div>
       </div>
       <div className="grid gap-5 lg:grid-cols-3">
         <MiniList title="Most Viewed" items={a.mostViewed} metric="view_count" />
